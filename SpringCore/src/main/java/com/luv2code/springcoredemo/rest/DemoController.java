@@ -22,9 +22,6 @@ public class DemoController {
     public String getDailyWorkOut() {
         return myCoach.getDailyWorkOut();
     }
-    public Coach getMyCoach() {
-        return myCoach;
-    }
 
     // setter Injection
     @Autowired
