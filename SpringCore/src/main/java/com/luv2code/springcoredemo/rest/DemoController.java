@@ -27,7 +27,8 @@ public class DemoController {
 
     // setter Injection
     @Autowired
-    public void setMyCoach(@Qualifier("basketballCoach") Coach myCoach) {
+    public void setMyCoach(@Qualifier("cricketCoach") Coach myCoach) {
+        System.out.println(myCoach.getClass());
         this.myCoach = myCoach;
     }
 
