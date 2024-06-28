@@ -2,6 +2,7 @@ package com.luv2code.springcoredemo.rest;
 
 import com.luv2code.util.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     // Field Injection
-    @Autowired
+    // @Autowired
     private Coach myCoach;
 
     // Autowired is like @Inject
 //    @Autowired
-//    DemoController(Coach coach){
+//    DemoController(@Qualifier("cricketCoach")Coach coach){
 //        this.myCoach = coach;
 //    }
 
@@ -25,10 +26,10 @@ public class DemoController {
     }
 
     // setter Injection
-//    @Autowired
-//    public void setMyCoach(Coach myCoach) {
-//        this.myCoach = myCoach;
-//    }
+    @Autowired
+    public void setMyCoach(@Qualifier("basketballCoach") Coach myCoach) {
+        this.myCoach = myCoach;
+    }
 
     // setter Injection without name setter
 //    @Autowired
