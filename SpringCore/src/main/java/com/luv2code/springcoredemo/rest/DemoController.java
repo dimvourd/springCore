@@ -13,6 +13,7 @@ public class DemoController {
     // Field Injection
     // @Autowired
     private Coach myCoach;
+    private Coach anotherCoach;
 
     // Autowired is like @Inject
 //    @Autowired
@@ -27,9 +28,11 @@ public class DemoController {
 
     // setter Injection
     @Autowired
-    public void setMyCoach(@Qualifier("cricketCoach") Coach myCoach) {
+    public void setMyCoach(@Qualifier("cricketCoach") Coach myCoach,
+                           @Qualifier("cricketCoach") Coach anotherCoach) {
         System.out.println(myCoach.getClass());
         this.myCoach = myCoach;
+        this.anotherCoach = anotherCoach;
     }
 
     // setter Injection without name setter
@@ -39,4 +42,8 @@ public class DemoController {
 //        this.myCoach = myCoach;
 //    }
 
+    @GetMapping("/check")
+    public String check(){
+        return "myCoach == anotherCoach : " + (myCoach == anotherCoach);
+    }
 }
