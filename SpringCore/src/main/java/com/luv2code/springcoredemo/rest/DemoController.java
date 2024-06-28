@@ -1,6 +1,8 @@
 package com.luv2code.springcoredemo.rest;
 
 import com.luv2code.util.Coach;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +17,24 @@ public class DemoController {
     private Coach myCoach;
     private Coach anotherCoach;
 
+
+    // define the init method
+    @PostConstruct
+    public void init(){
+        System.out.println("Start up stuff.");
+    }
+
+    // difine the destruct method
+    @PreDestroy
+    public void destroy(){
+        System.out.println("Do my clean up stuff.");
+    }
+
     // Autowired is like @Inject
-//    @Autowired
-//    DemoController(@Qualifier("cricketCoach")Coach coach){
-//        this.myCoach = coach;
-//    }
+    @Autowired
+    DemoController(@Qualifier("cricketCoach")Coach coach){
+        this.myCoach = coach;
+    }
 
     @GetMapping("/getDailyWorkout")
     public String getDailyWorkOut() {
@@ -27,13 +42,13 @@ public class DemoController {
     }
 
     // setter Injection
-    @Autowired
-    public void setMyCoach(@Qualifier("cricketCoach") Coach myCoach,
-                           @Qualifier("cricketCoach") Coach anotherCoach) {
-        System.out.println(myCoach.getClass());
-        this.myCoach = myCoach;
-        this.anotherCoach = anotherCoach;
-    }
+//    @Autowired
+//    public void setMyCoach(@Qualifier("cricketCoach") Coach myCoach,
+//                           @Qualifier("cricketCoach") Coach anotherCoach) {
+//        System.out.println(myCoach.getClass());
+//        this.myCoach = myCoach;
+//        this.anotherCoach = anotherCoach;
+//    }
 
     // setter Injection without name setter
 //    @Autowired
@@ -46,4 +61,6 @@ public class DemoController {
     public String check(){
         return "myCoach == anotherCoach : " + (myCoach == anotherCoach);
     }
+
+
 }
