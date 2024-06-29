@@ -32,11 +32,11 @@ public class DemoController {
 
     // Autowired is like @Inject
     @Autowired
-    DemoController(@Qualifier("cricketCoach")Coach coach){
+    DemoController(@Qualifier("aquatic")Coach coach){
         this.myCoach = coach;
     }
 
-    @GetMapping("/getDailyWorkout")
+    @GetMapping("/dailyWorkout")
     public String getDailyWorkOut() {
         return myCoach.getDailyWorkOut();
     }
@@ -59,8 +59,7 @@ public class DemoController {
 
     @GetMapping("/check")
     public String check(){
+        System.out.println("check");
         return "myCoach == anotherCoach : " + (myCoach == anotherCoach);
     }
-
-
 }
